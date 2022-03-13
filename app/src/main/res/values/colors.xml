@@ -12,6 +12,19 @@
     <color name="colorAccent">#ED2173</color>
     <color name="ColorThemePink">#ED2173</color>
     <color name="ColorThemeOrange">#F4442d</color>
+<color name="munkanap">#C6EFCE</color>
+    <color name="pihenonap">#FFC7CE</color>
+   <color name="unnep">#FFC7CE</color>
+    <color name="szombat">#FFEB9C</color>
+   <color name="vasarnap">#FFEB9C</color>
+   <color name="athelyezett">#FFEB9C</color>
+
+    <color name="munkanap_text">#006100</color>
+    <color name="pihenonap_text">#9C0006</color>
+    <color name="unnep_text">#9C0006</color>
+    <color name="szombat_text">#9C5700</color>
+    <color name="vasarnap_text">#9C5700</color>
+    <color name="athelyezett_text">#9C5700</color>
 
     <color name="colorPrimaryText">#222934</color>
     <color name="colorSecondaryText">#989898</color>
