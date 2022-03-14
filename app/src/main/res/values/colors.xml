@@ -12,6 +12,8 @@
     <color name="colorAccent">#ED2173</color>
     <color name="ColorThemePink">#ED2173</color>
     <color name="ColorThemeOrange">#F4442d</color>
+    <color name="calendar_light">#03fc66</color>
+    <color name="calendar_dark">#1a8243</color>
 <color name="munkanap">#C6EFCE</color>
     <color name="pihenonap">#FFC7CE</color>
    <color name="unnep">#FFC7CE</color>

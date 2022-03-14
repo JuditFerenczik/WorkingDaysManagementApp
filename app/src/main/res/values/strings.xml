@@ -33,6 +33,9 @@
     <string name="material_calendar_friday">P</string>
     <string name="material_calendar_saturday">Sz</string>
     <string name="material_calendar_sunday">V</string>
+    <string name="et_hint_picked_date">A választott dátum</string>
+    <string name="Mentes">Mentés</string>
+    <string name="beosztas_kezelo">Beosztásom</string>
 
     <array name="material_calendar_months_array">
         <item>Január</item>

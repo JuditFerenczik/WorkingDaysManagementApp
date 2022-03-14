@@ -14,7 +14,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activities.CalendarActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activities.EditActivity"
             android:exported="false" />
@@ -23,6 +25,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BeosztasApp.NoActionBar" />
+
         <activity
             android:name=".activites.LoginActivity"
             android:exported="false"
