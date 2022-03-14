@@ -22,4 +22,5 @@
     <dimen name="txt_terms_condition_marginStart">10dp</dimen>
     <dimen name="txt_terms_and_condition_textSize">14sp</dimen>
     <dimen name="button_paddingTop_Button">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

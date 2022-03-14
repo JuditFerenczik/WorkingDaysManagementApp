@@ -9,11 +9,15 @@ import kotlinx.android.synthetic.main.activity_calendar.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.widget.ArrayAdapter
-import android.widget.CalendarView
 import android.widget.Spinner
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
-import com.example.beosztasapp.R
+
+
+
+
+
+
 
 
 class CalendarActivity : AppCompatActivity() {
@@ -143,10 +147,24 @@ class CalendarActivity : AppCompatActivity() {
 
         //    calendarView.setCalendarDays(getSelectedDays())
 
+
+        calendarView.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+               // val clickedDayCalendar = eventDay.calendar
+                val day:String = eventDay.calendar.get(5).toString()
+                val year:String = eventDay.calendar.get(1).toString()
+                val month:String = (eventDay.calendar.get(2)+1).toString()
+
+                var clickedDayCalendar:String = year +"."+month+"."+day
+                et_picked_date.setText(clickedDayCalendar)
+                Toast.makeText(this@CalendarActivity,year,Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        /*
         calendarView.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
                 val calendar = Calendar.getInstance()
-
                 var year = 2021 + Calendar.YEAR
                 var month = Calendar.MONTH +1
                 var day = Calendar.DAY_OF_MONTH
@@ -160,7 +178,6 @@ class CalendarActivity : AppCompatActivity() {
                 Toast.makeText(this@CalendarActivity,clickedDayCalendar,Toast.LENGTH_SHORT).show()
             }
         })
-        /*
 
         val calendar = findViewById<CalendarView>(R.id.calendarView)
         calendar.setOnDateChangeListener(CalendarView.OnDateChangeListener { _, i, il, i2 ->
