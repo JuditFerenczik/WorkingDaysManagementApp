@@ -1,78 +1,52 @@
 package com.example.beosztasapp.activites
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.view.WindowInsets
-import android.view.WindowManager
-import android.widget.EditText
 import android.widget.Toast
-import com.android.volley.AuthFailureError
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activities.CalendarActivity
-import com.example.beosztasapp.activities.EditActivity
+import com.example.beosztasapp.activities.SqlHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var sqliteHelper: SqlHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-
-            )
-        }
+        sqliteHelper = SqlHelper(this)
         tv_register.setOnClickListener{
             val intent = Intent(this@LoginActivity, CalendarActivity ::class.java)
             startActivity(intent)
         }
-        btn_login.setOnClickListener{
-            var nev: EditText = findViewById(R.id.et_email)
-            var jelszo: EditText = findViewById(R.id.et_password)
-            register_u(nev.text.toString(),jelszo.text.toString())
+        btn_login.setOnClickListener {
+            loginSzemelyek()
+
         }
 
     }
-    fun register_u(
-        nev: String,
-        jelszo: String
-        ){
-        val request: StringRequest = object : StringRequest(
-            Method.POST, "http://192.168.0.38/Webremek/app/myinsert.php",
-            Response.Listener { response ->
-                Toast.makeText(
-                    applicationContext,
-                    response,
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            Response.ErrorListener { error ->
-                Toast.makeText(
-                    applicationContext,
-                    error.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-            }) {
-            @Throws(AuthFailureError::class)
-            override fun getParams(): Map<String, String>? {
-                val map: MutableMap<String, String> = HashMap()
-                map["nev"] = nev
-                map["jelszo"] = jelszo
-                return map
+    private fun loginSzemelyek(){
+        val email = et_email.text.toString()
+        val jelszo = et_password.text.toString()
+        if(email.isEmpty() ||jelszo.isEmpty()){
+            Toast.makeText(this,"Töltse ki a kötelező mezőket!"+email +"-"+jelszo, Toast.LENGTH_SHORT).show()
+        }else{
+            val ered = sqliteHelper.checkSzemely(email,jelszo)
+            if(ered > -1){
+                val nev = sqliteHelper.getSzemely(ered).nev
+                Toast.makeText(this,"Sikeres bejelentkezés: "+nev, Toast.LENGTH_LONG).show()
+                clearEditText()
+            }else{
+                Toast.makeText(this,"E-mail cím vagy jelszó nem egyezik!",Toast.LENGTH_LONG).show()
             }
 
         }
-        val queue = Volley.newRequestQueue(applicationContext)
-        queue.add(request)
     }
+
+    private fun clearEditText() {
+        et_email.setText("")
+        et_password.setText("")
+    }
+
 }
