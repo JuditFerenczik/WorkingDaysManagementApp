@@ -36,7 +36,7 @@
     <string name="et_hint_picked_date">A választott dátum</string>
     <string name="Mentes">Mentés</string>
     <string name="beosztas_kezelo">Beosztásom</string>
-
+    <string name="udvozlet">Üdvözlünk a honlapon, %1$s! </string>
     <array name="material_calendar_months_array">
         <item>Január</item>
         <item>Február</item>

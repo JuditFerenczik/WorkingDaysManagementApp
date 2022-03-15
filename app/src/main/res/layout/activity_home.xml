@@ -6,20 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".activities.HomeActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.BeosztasApp.AppBarOverlay">
+        android:layout_height="@dimen/my_toolbar_size"
+        android:background="@drawable/button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.example.beosztasapp.utils.MSPTextViewBold
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.BeosztasApp.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:text="@string/udvozlet"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/toolbar_title_text_size" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-
+    </androidx.appcompat.widget.Toolbar>
     <include layout="@layout/content_home" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activities.CalendarActivity
+import com.example.beosztasapp.activities.HomeActivity
 import com.example.beosztasapp.activities.SqlHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -21,24 +22,37 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btn_login.setOnClickListener {
-            loginSzemelyek()
+            val email = et_email.text.toString()
+            val jelszo = et_password.text.toString()
+            if(loginSzemelyek()){
+                val ered = sqliteHelper.checkSzemely(email,jelszo)
+                val nev = sqliteHelper.getSzemely(ered).nev
+                val intent = Intent(this@LoginActivity, HomeActivity ::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
+            }
 
         }
 
     }
-    private fun loginSzemelyek(){
+    private fun loginSzemelyek():Boolean{
         val email = et_email.text.toString()
         val jelszo = et_password.text.toString()
         if(email.isEmpty() ||jelszo.isEmpty()){
             Toast.makeText(this,"Töltse ki a kötelező mezőket!"+email +"-"+jelszo, Toast.LENGTH_SHORT).show()
+            return false
         }else{
             val ered = sqliteHelper.checkSzemely(email,jelszo)
             if(ered > -1){
                 val nev = sqliteHelper.getSzemely(ered).nev
                 Toast.makeText(this,"Sikeres bejelentkezés: "+nev, Toast.LENGTH_LONG).show()
+
                 clearEditText()
+                return true
             }else{
                 Toast.makeText(this,"E-mail cím vagy jelszó nem egyezik!",Toast.LENGTH_LONG).show()
+                return  false
             }
 
         }
