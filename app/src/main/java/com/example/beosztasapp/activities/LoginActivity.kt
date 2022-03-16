@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activities.CalendarActivity
 import com.example.beosztasapp.activities.HomeActivity
+import com.example.beosztasapp.activities.HomeAlkActivity
 import com.example.beosztasapp.activities.SqlHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             if(loginSzemelyek()){
                 val ered = sqliteHelper.checkSzemely(email,jelszo)
                 val nev = sqliteHelper.getSzemely(ered).nev
-                val intent = Intent(this@LoginActivity, HomeActivity ::class.java)
+                val intent = Intent(this@LoginActivity, HomeAlkActivity ::class.java)
                 intent.putExtra("szemelyid",ered)
                 intent.putExtra("nev",nev)
                 startActivity(intent)

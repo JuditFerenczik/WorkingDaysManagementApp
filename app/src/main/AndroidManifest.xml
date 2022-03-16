@@ -13,6 +13,11 @@
         android:theme="@style/Theme.BeosztasApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.HomeAlkActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home_alk"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar" />
+        <activity
             android:name=".activities.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"

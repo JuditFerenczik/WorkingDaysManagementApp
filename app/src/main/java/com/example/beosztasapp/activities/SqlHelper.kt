@@ -36,7 +36,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
            // db?.execSQL("insert into" + TBL_SZEMELYEK  +"(" + NEV +"," + ADOAZONOSITO +","+ FONOK +","+ MUNKAREND +","+ BELEPES +","+ EMAIL+","+ JELSZO +","+ SZABADSAG +","+ HETI +") values('Dotzi',234545632,'Kallai Imre',1, '2022.1.2','dotzi@gmail.com', 'abc',30,35)")
             db?.execSQL("insert into " + TBL_SZEMELYEK + " (" + NEV +"," + ADOAZONOSITO +","+ FONOK +","+ MUNKAREND +","+ BELEPES +","+ EMAIL+","+ JELSZO +","+ SZABADSAG +","+ HETI +") values('Judylein',234891632,'Kallai Imre',1, '2022.2.4','judy@gmail.com', '123',24,40)")
         db?.execSQL("insert into szemelyek(nev, adoazonosito,fonok, munkarend, belepes, email, jelszo, eves_szabadsag, heti_munkaido) values('Dotzi',234545632,'Kallai Imre',1, '2022.1.2','dotzi@gmail.com', 'abc',30,35)")
-
+            db?.execSQL("insert into szemelyek(nev, adoazonosito,fonok, munkarend, belepes, email, jelszo, eves_szabadsag, heti_munkaido) values('Pajkos Doro',235662432,'Kallai Imre',1, '2022.2.3','doro@gmail.com', '456',22,40)")
         }
 
 

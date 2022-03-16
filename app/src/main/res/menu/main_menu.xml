@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.HomeAlkActivity">
+    <item
+        android:id="@+id/alk_beoszt"
+        android:orderInCategory="100"
+        android:title="@string/beosztas"/>
+    <item
+        android:id="@+id/alk_szem"
+        android:title="@string/szemelyes"/>
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/alk_ertesit"
+        android:title="@string/ertesites"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/alk_szab"
+        android:title="@string/szabadsag"/>
+"
+        app:showAsAction="never"/>
+</menu>
