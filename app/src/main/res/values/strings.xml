@@ -72,5 +72,6 @@
     <string name="szemelyes">Személyes adatok változtatása</string>
     <string name="ertesites">Értesítéseim</string>
     <string name="szabadsag">Korábbi szabadságaim</string>
+    <string name="et_hint_szabmennyiseg">Szabadság mennyisége</string>
 
 </resources>

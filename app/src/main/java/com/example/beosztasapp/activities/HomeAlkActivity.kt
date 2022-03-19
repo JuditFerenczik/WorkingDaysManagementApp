@@ -15,13 +15,15 @@ import kotlinx.android.synthetic.main.activity_home_alk.toolbar
 
 
 class HomeAlkActivity : AppCompatActivity() {
-
+    var nev:String? = null
+    var ered:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_alk)
         setSupportActionBar(toolbar)
-        val nev:String = intent.getStringExtra("nev").toString()
-        Toast.makeText(this, "you are " + nev, Toast.LENGTH_LONG).show()
+        nev = intent.getStringExtra("nev").toString()
+        ered = intent.getIntExtra("szemelyid",-1)
+        Toast.makeText(this, "you are " + nev + " - " + ered, Toast.LENGTH_LONG).show()
         val res: Resources = resources
         val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,nev )
         home_alk_title.setText(text)
@@ -37,7 +39,11 @@ class HomeAlkActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.alk_beoszt -> {
                 Toast.makeText(applicationContext, "Beosztásom clicked", Toast.LENGTH_LONG).show()
-                this.startActivity(Intent(this,CalendarActivity::class.java))
+                val intent = Intent(this,CalendarActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
+              //  this.startActivity(Intent(this,CalendarActivity::class.java))
                 true
             }
             R.id.alk_ertesit ->{
@@ -50,6 +56,7 @@ class HomeAlkActivity : AppCompatActivity() {
             }
             R.id.alk_szem ->{
                 Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
+
                 this.startActivity(Intent(this,RegisterActivity::class.java))
                 return true
             }
