@@ -380,7 +380,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
       fun checkSzabadsag(szemelyID: Int):Int{
           val columns = arrayOf(SZEMELY_ID)
           val db = this.readableDatabase
-          val selection = "$SZEMELY_ID = ? AND $STATUSZ"
+          val selection = "$SZEMELY_ID = ? AND $STATUSZ =?"
           val selectionArgs = arrayOf(szemelyID.toString(), "szabadsag")
           val cursor = db.query(
               TBL_KERESEK, //Table to query

@@ -30,12 +30,35 @@ class CalendarActivity : AppCompatActivity() {
         sqliteHelper = SqlHelper(this)
         val szemely_id: Int = intent.getIntExtra("szemelyid", -1)
         Toast.makeText(applicationContext, "A szemely_id is "+ szemely_id, Toast.LENGTH_LONG).show()
-       // var szabmennyiseg : Int = sqliteHelper.checkSzabadsag(szemely_id)
-        //var tmpSzemely = sqliteHelper.getSzemely(szemely_id)
-        //et_szabmennyiseg.setText("$szabmennyiseg / ${tmpSzemely.eves_szabadsag}")
+        var szabmennyiseg : Int = sqliteHelper.checkSzabadsag(szemely_id)
+        var tmpSzemely = sqliteHelper.getSzemely(szemely_id)
+        //$szabmennyiseg
+        tv_szabmennyiseg.setText("$szabmennyiseg/ ${tmpSzemely.eves_szabadsag}")
+        val tmpKezdes = tmpSzemely.belepes
         val min: Calendar = Calendar.getInstance()
         val max: Calendar = Calendar.getInstance()
-        min.set(2021,11,31) //excluded
+        var tmpYear = tmpKezdes.split(".")[0].toInt()
+        var tmpMonth =tmpKezdes.split(".")[1].toInt()
+        var tmpDay = tmpKezdes.split(".")[2].toInt()
+        Toast.makeText(this, "$tmpYear : $tmpMonth : $tmpDay",Toast.LENGTH_LONG).show()
+        if( tmpYear < 2022 || (tmpYear ==2022 && tmpMonth == 1 && tmpDay ==1)){
+            min.set(2021,11,31) //excluded
+            Toast.makeText(this, "$tmpYear : $tmpMonth : $tmpDay first",Toast.LENGTH_LONG).show()
+        }else{
+              if(tmpDay == 1){
+            tmpDay = daysInMonth(tmpMonth-1,2022)
+            tmpMonth = tmpMonth -2
+
+            }else{
+                  tmpDay = tmpDay-1
+                  tmpMonth = tmpMonth -1
+              }
+            min.set(tmpYear,tmpMonth,tmpDay)
+            Toast.makeText(this, "$tmpYear : $tmpMonth : $tmpDay second",Toast.LENGTH_LONG).show()
+        }
+
+
+        //min.set(2021,11,31) //excluded
         max.set(2022,11,31) //included
 
         calendarView.setMinimumDate(min)
@@ -223,12 +246,12 @@ class CalendarActivity : AppCompatActivity() {
                 }
 
                 val clickedDayCalendar = "$year.$month.$day"
-                et_picked_date.setText(clickedDayCalendar)
+                tv_pickedDate.setText(clickedDayCalendar)
                 Toast.makeText(this@CalendarActivity,year,Toast.LENGTH_SHORT).show()
             }
         })
         btn_calendar_save.setOnClickListener {
-           val datum = et_picked_date.text.toString()
+           val datum = tv_pickedDate.text.toString()
             var status = spinner1.getSelectedItem().toString()
             status = if(status == "Táppénz"){
                 "tappenz"

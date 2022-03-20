@@ -22,10 +22,11 @@ class HomeAlkActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_alk)
         setSupportActionBar(toolbar)
         nev = intent.getStringExtra("nev").toString()
+        val firstName = nev!!.split(" ")[1]
         ered = intent.getIntExtra("szemelyid",-1)
         Toast.makeText(this, "you are " + nev + " - " + ered, Toast.LENGTH_LONG).show()
         val res: Resources = resources
-        val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,nev )
+        val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,firstName )
         home_alk_title.setText(text)
     }
 

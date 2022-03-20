@@ -73,5 +73,7 @@
     <string name="ertesites">Értesítéseim</string>
     <string name="szabadsag">Korábbi szabadságaim</string>
     <string name="et_hint_szabmennyiseg">Szabadság mennyisége</string>
+    <string name="title_valasztott_date">Választott dátum</string>
+    <string name="title_szabmenny">Szabadság mennyisége:</string>
 
 </resources>

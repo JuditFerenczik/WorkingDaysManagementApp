@@ -37,53 +37,52 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_pickedDate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_pickedText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:hint="@string/et_hint_picked_date"
-                android:textColorHint="@color/colorSecondaryText"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_valasztott_date"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_picked_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/title_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_szabmennyiseg"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_pickedDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:hint="@string/et_hint_szabmennyiseg"
-                android:textColorHint="@color/colorSecondaryText"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_valasztott_date"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_pickedDate">
+                app:layout_constraintTop_toBottomOf="@id/tv_pickedText" />
 
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_szabmennyiseg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/title_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_szabmennyText"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_szabmenny"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pickedDate" />
+            <com.example.beosztasapp.utils.MSPTextViewBold
+                android:id="@+id/tv_szabmennyiseg"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_szabmenny"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/title_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_szabmennyText" />
 
     <com.applandeo.materialcalendarview.CalendarView
 
@@ -97,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_szabmennyiseg"
+        app:layout_constraintTop_toBottomOf="@id/tv_szabmennyiseg"
         app:type="one_day_picker" >
 
     </com.applandeo.materialcalendarview.CalendarView>
