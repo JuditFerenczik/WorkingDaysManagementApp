@@ -39,54 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etil_first_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/hint_first_name"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/eet_first_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etil_last_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/hint_last_name"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etil_first_name">
-
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/eet_last_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etil_email"
@@ -100,7 +53,7 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etil_last_name">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.example.beosztasapp.utils.MSPEditText
                     android:id="@+id/eet_email"
@@ -162,130 +115,6 @@
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_adoazon"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/ado"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etil_confirm_password">
-            <com.example.beosztasapp.utils.MSPEditText
-                android:id="@+id/et_adoazon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:padding="@dimen/et_padding"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/et_textSize"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="422dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_boss"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/fonok"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_adoazon">
-
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_boss"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_munkarend"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/munkarend"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_boss">
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_munkarend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_szabi"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/szabi"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_munkarend">
-
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_szabi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_hetimunka"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/munkaido"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_szabi">
-
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_hetimunka"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.example.beosztasapp.utils.MSPButton
                 android:id="@+id/btn_save"
@@ -300,12 +129,13 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/btn_padding"
                 android:paddingBottom="@dimen/btn_padding"
-                android:text="@string/btn_lbl_register"
+                android:text="@string/btn_save"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btn_textsize"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_hetimunka">
+                app:layout_constraintTop_toBottomOf="@id/etil_confirm_password">
 
 
             </com.example.beosztasapp.utils.MSPButton>

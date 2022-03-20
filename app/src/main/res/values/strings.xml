@@ -75,5 +75,14 @@
     <string name="et_hint_szabmennyiseg">Szabadság mennyisége</string>
     <string name="title_valasztott_date">Választott dátum</string>
     <string name="title_szabmenny">Szabadság mennyisége:</string>
+    <string name="title_NaN">NaN</string>
+    <string name="btn_save">Mentés</string>
+    <string name="et_hint_eves">Éves szabadság mennyisége</string>
+    <string name="et_hint_heti">Heti munka óraszám</string>
+    <string name="hint_ado">"Adóazonosító "</string>
+    <string name="et_hint_munkar">Munkarend azonosító</string>
+    <string name="kijelent">Kijelentkezés</string>
+    <string name="reisztracio">Új munkavállaló regisztrációja</string>
+    <string name="beosztott">Beosztottjaim</string>
 
 </resources>

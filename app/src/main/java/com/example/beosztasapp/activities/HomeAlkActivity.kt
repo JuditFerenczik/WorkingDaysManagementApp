@@ -8,8 +8,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.beosztasapp.R
-import com.example.beosztasapp.activites.RegisterActivity
-import kotlinx.android.synthetic.main.activity_home.*
+import com.example.beosztasapp.activites.LoginActivity
 import kotlinx.android.synthetic.main.activity_home_alk.*
 import kotlinx.android.synthetic.main.activity_home_alk.toolbar
 
@@ -58,7 +57,13 @@ class HomeAlkActivity : AppCompatActivity() {
             R.id.alk_szem ->{
                 Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
 
-                this.startActivity(Intent(this,RegisterActivity::class.java))
+                this.startActivity(Intent(this,EditActivity::class.java))
+                return true
+            }
+            R.id.alk_kij ->{
+                Toast.makeText(applicationContext, "Kijelentkezés clicked", Toast.LENGTH_LONG).show()
+
+                this.startActivity(Intent(this,LoginActivity::class.java))
                 return true
             }
             else -> super.onOptionsItemSelected(item)

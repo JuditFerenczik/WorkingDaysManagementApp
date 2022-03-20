@@ -4,12 +4,11 @@
     tools:context=".activities.HomeAlkActivity">
     <item
         android:id="@+id/alk_beoszt"
-        android:orderInCategory="100"
         android:title="@string/beosztas"/>
     <item
         android:id="@+id/alk_szem"
         android:title="@string/szemelyes"/>
-        app:showAsAction="never"/>
+
     <item
         android:id="@+id/alk_ertesit"
         android:title="@string/ertesites"
@@ -17,6 +16,10 @@
     <item
         android:id="@+id/alk_szab"
         android:title="@string/szabadsag"/>
+
+    <item
+        android:id="@+id/alk_kij"
+        android:title="@string/kijelent"/>
 "
         app:showAsAction="never"/>
 </menu>

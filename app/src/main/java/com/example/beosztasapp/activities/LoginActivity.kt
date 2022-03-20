@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activities.CalendarActivity
-import com.example.beosztasapp.activities.HomeActivity
 import com.example.beosztasapp.activities.HomeAlkActivity
 import com.example.beosztasapp.activities.SqlHelper
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,10 +17,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         sqliteHelper = SqlHelper(this)
-        tv_register.setOnClickListener{
-            val intent = Intent(this@LoginActivity, CalendarActivity ::class.java)
-            startActivity(intent)
-        }
+      
         btn_login.setOnClickListener {
             val email = et_email.text.toString()
             val jelszo = et_password.text.toString()

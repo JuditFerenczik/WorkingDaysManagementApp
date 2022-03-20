@@ -65,24 +65,24 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_fonok"
+                android:id="@+id/til_ado"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/hint_last_name"
+                android:hint="@string/hint_ado"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_name">
 
                 <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_fonok"
+                    android:id="@+id/et_ado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
@@ -101,7 +101,7 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_fonok">
+                app:layout_constraintTop_toBottomOf="@id/til_ado">
 
                 <com.example.beosztasapp.utils.MSPEditText
                     android:id="@+id/et_email"
@@ -115,29 +115,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="63dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_password"
-                android:textColorHint="@color/colorSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_email">
 
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_munkr"
@@ -147,17 +125,17 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_confirm_password"
+                android:hint="@string/et_hint_munkar"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_password">
+                app:layout_constraintTop_toBottomOf="@+id/til_email">
 
                 <com.example.beosztasapp.utils.MSPEditText
                     android:id="@+id/et_munkr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
@@ -171,7 +149,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_confirm_password"
+                android:hint="@string/et_hint_eves"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +159,7 @@
                     android:id="@+id/et_eves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
@@ -195,7 +173,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_confirm_password"
+                android:hint="@string/et_hint_heti"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +183,7 @@
                     android:id="@+id/et_hetim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />

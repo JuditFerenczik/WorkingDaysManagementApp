@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.HomeActivity">
+    <item
+        android:id="@+id/fon_beoszt"
+        android:title="@string/beosztas"/>
+    <item
+        android:id="@+id/fon_szem"
+        android:title="@string/szemelyes"/>
+    <item
+        android:id="@+id/fon_ertesit"
+        android:title="@string/ertesites" />
+    <item
+        android:id="@+id/fon_szab"
+        android:title="@string/szabadsag"/>
+    <item
+        android:id="@+id/fon_reg"
+        android:title="@string/reisztracio"/>
+    <item
+        android:id="@+id/fon_beosztott"
+        android:title="@string/beosztott"/>
+
+    <item
+        android:id="@+id/fon_kij"
+        android:title="@string/kijelent"/>
+    "app:showAsAction="never"/>
+</menu>

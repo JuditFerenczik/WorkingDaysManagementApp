@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/title_valasztott_date"
+                android:text="@string/title_NaN"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/title_textSize"
                 app:layout_constraintEnd_toEndOf="parent"

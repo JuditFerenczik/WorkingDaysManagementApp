@@ -1,7 +1,6 @@
 package com.example.beosztasapp.activities
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +10,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import androidx.annotation.RequiresApi
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+
 
 class CalendarActivity : AppCompatActivity() {
     private lateinit var sqliteHelper: SqlHelper
@@ -33,6 +29,7 @@ class CalendarActivity : AppCompatActivity() {
         var szabmennyiseg : Int = sqliteHelper.checkSzabadsag(szemely_id)
         var tmpSzemely = sqliteHelper.getSzemely(szemely_id)
         //$szabmennyiseg
+
         tv_szabmennyiseg.setText("$szabmennyiseg/ ${tmpSzemely.eves_szabadsag}")
         val tmpKezdes = tmpSzemely.belepes
         val min: Calendar = Calendar.getInstance()
@@ -84,6 +81,7 @@ class CalendarActivity : AppCompatActivity() {
             }
 
         }
+        /*
         fuggoList.forEach{
             Toast.makeText(this, "$it is fugi", Toast.LENGTH_LONG).show()
         }
@@ -92,7 +90,7 @@ class CalendarActivity : AppCompatActivity() {
         }
         tapList.forEach{
             Toast.makeText(this, "$it is tapi", Toast.LENGTH_LONG).show()
-        }
+        }*/
         val events: ArrayList<EventDay> = ArrayList()
 
         val listP = listOf(
@@ -120,11 +118,10 @@ class CalendarActivity : AppCompatActivity() {
             calendar2.add(Calendar.DAY_OF_YEAR, j)
             currentdaysMonth++
             if(daysInMonth(monthCount, 2022) < currentdaysMonth){
-
                // currentdaysMonth -= daysInMonth(monthCount, 2022)
               //  Toast.makeText(this,daysInMonth(monthCount, 2022).toString()+",month:"+monthCount.toString()+ "days:" + currentdaysMonth,Toast.LENGTH_LONG ).show()
-                monthCount++
                 currentdaysMonth -= daysInMonth(monthCount, 2022)
+                monthCount++
             }
             val usedMonth:String = if(monthCount < 10){
                 "0$monthCount"
@@ -263,8 +260,23 @@ class CalendarActivity : AppCompatActivity() {
                 "$datum: $status",
 
                 Toast.LENGTH_SHORT).show()
-            sqliteHelper.addSzabiJelenletik(szemely_id,datum,status)
-            sqliteHelper.addSzabiKeresek(szemely_id,datum,status,"elinditva")
+            if(datum == "NaN") {
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Nincs dátum kiválasztva!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else if(szabmennyiseg >= tmpSzemely.eves_szabadsag){
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Nem igényelhető több szabadság, az éves keret kimerült!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else{
+                sqliteHelper.addSzabiJelenletik(szemely_id,datum,status)
+                sqliteHelper.addSzabiKeresek(szemely_id,datum,status,"elinditva")
+            }
+
         }
 
 
@@ -333,7 +345,7 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     open fun isMunkaszunet(myDate: String):Boolean{
-        val listMunkaszunet = listOf("2022.01.1","2022.03.15", "2022.04.15","2022.04.18","2022.05.1","2022.06.6","2022.08.20","2022.10.23","2022.11.1","2022.12.25","2022.12.26")
+        val listMunkaszunet = listOf("2022.01.1","2022.03.15", "2022.04.15","2022.04.18","2022.05.01","2022.06.06","2022.08.20","2022.10.23","2022.11.01","2022.12.25","2022.12.26")
 
     return listMunkaszunet.contains(myDate)
     }
