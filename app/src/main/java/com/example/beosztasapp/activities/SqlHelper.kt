@@ -195,7 +195,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                         SZEMELY_ID)).toInt(),
                         nev = cursor.getString(cursor.getColumnIndexOrThrow(NEV)),
                         adoazonosito = cursor.getInt(cursor.getColumnIndexOrThrow(ADOAZONOSITO)),
-                        fonok = cursor.getString(cursor.getColumnIndexOrThrow(FONOK)),
+                        fonok = cursor.getInt(cursor.getColumnIndexOrThrow(FONOK)),
                         munkarend = cursor.getInt(cursor.getColumnIndexOrThrow(MUNKAREND)),
                         belepes = cursor.getString(cursor.getColumnIndexOrThrow(BELEPES)),
                         email = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL)),
@@ -237,7 +237,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                     SZEMELY_ID)).toInt(),
                     nev = cursor.getString(cursor.getColumnIndexOrThrow(NEV)),
                     adoazonosito = cursor.getInt(cursor.getColumnIndexOrThrow(ADOAZONOSITO)),
-                    fonok = cursor.getString(cursor.getColumnIndexOrThrow(FONOK)),
+                    fonok = cursor.getInt(cursor.getColumnIndexOrThrow(FONOK)),
                     munkarend = cursor.getInt(cursor.getColumnIndexOrThrow(MUNKAREND)),
                     belepes = cursor.getString(cursor.getColumnIndexOrThrow(BELEPES)),
                     email = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL)),
@@ -347,6 +347,33 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             db.insert(TBL_KERESEK,null, values)
             db.close()
 
+        }
+        fun checkAlreadyEnteredSzabi(szemelyID: Int, datum:String):Boolean{
+
+            val db = this.readableDatabase
+            val columns = arrayOf(SZEMELY_ID)
+            val selection = "$SZEMELY_ID = ? AND $DATUM = ?"
+            val selectionArgs = arrayOf(szemelyID.toString(), datum)
+            /**
+             * Here query function is used to fetch records from user table this function works like we use sql query.
+             * SQL query equivalent to this query function is
+             * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
+             */
+            val cursor = db.query(
+                TBL_KERESEK, //Table to query
+                columns,        //columns to return
+                selection,      //columns for the WHERE clause
+                selectionArgs,  //The values for the WHERE clause
+                null,  //group the rows
+                null,   //filter by row groups
+                null)  //The sort order
+            val cursorCount = cursor.count
+            cursor.close()
+            db.close()
+            if (cursorCount > 0) {
+                return true
+            }
+            return false
         }
         fun checkJelenletek(szemelyID: Int):Boolean{
             val columns = arrayOf(DATUM)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activities.CalendarActivity
+import com.example.beosztasapp.activities.HomeActivity
 import com.example.beosztasapp.activities.HomeAlkActivity
 import com.example.beosztasapp.activities.SqlHelper
 import kotlinx.android.synthetic.main.activity_login.*
@@ -17,18 +18,32 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         sqliteHelper = SqlHelper(this)
-      
+
         btn_login.setOnClickListener {
             val email = et_email.text.toString()
             val jelszo = et_password.text.toString()
             if(loginSzemelyek()){
                 val ered = sqliteHelper.checkSzemely(email,jelszo)
                 val nev = sqliteHelper.getSzemely(ered).nev
+                val fonok = sqliteHelper.getSzemely(ered).fonok
+                var isFonok = false
+                if(fonok ==0) {
+                    isFonok = true
+                }
                 Toast.makeText(this, nev +" - " + ered, Toast.LENGTH_LONG).show()
-                val intent = Intent(this@LoginActivity, HomeAlkActivity ::class.java)
-                intent.putExtra("szemelyid",ered)
-                intent.putExtra("nev",nev)
-                startActivity(intent)
+                if(isFonok){
+                    val intent = Intent(this@LoginActivity, HomeActivity ::class.java)
+                    intent.putExtra("szemelyid",ered)
+                    intent.putExtra("nev",nev)
+                    intent.putExtra("isFonok",isFonok)
+                    startActivity(intent)
+                }else {
+                    val intent = Intent(this@LoginActivity, HomeAlkActivity::class.java)
+                    intent.putExtra("szemelyid", ered)
+                    intent.putExtra("nev", nev)
+                    intent.putExtra("isFonok", isFonok)
+                    startActivity(intent)
+                }
             }
 
         }

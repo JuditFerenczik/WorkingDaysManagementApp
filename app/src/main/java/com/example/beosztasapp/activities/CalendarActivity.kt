@@ -28,6 +28,7 @@ class CalendarActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "A szemely_id is "+ szemely_id, Toast.LENGTH_LONG).show()
         var szabmennyiseg : Int = sqliteHelper.checkSzabadsag(szemely_id)
         var tmpSzemely = sqliteHelper.getSzemely(szemely_id)
+        val isFonok = tmpSzemely.fonok == 0
         //$szabmennyiseg
 
         tv_szabmennyiseg.setText("$szabmennyiseg/ ${tmpSzemely.eves_szabadsag}")
@@ -248,8 +249,13 @@ class CalendarActivity : AppCompatActivity() {
             }
         })
         btn_calendar_save.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val currentMonth = calendar.get(2)+1
+            val currentDay = calendar.get(5)
+
            val datum = tv_pickedDate.text.toString()
             var status = spinner1.getSelectedItem().toString()
+            Toast.makeText(applicationContext, "A szemely_id is "+ szemely_id, Toast.LENGTH_LONG).show()
             status = if(status == "Táppénz"){
                 "tappenz"
             }else{
@@ -266,15 +272,43 @@ class CalendarActivity : AppCompatActivity() {
                     "Nincs dátum kiválasztva!",
                     Toast.LENGTH_SHORT
                 ).show()
-            }else if(szabmennyiseg >= tmpSzemely.eves_szabadsag){
+            }else if(szabmennyiseg >= tmpSzemely.eves_szabadsag) {
                 Toast.makeText(
                     this@CalendarActivity,
                     "Nem igényelhető több szabadság, az éves keret kimerült!",
                     Toast.LENGTH_SHORT
                 ).show()
+            }else if(currentMonth > (datum.split(".")[1]).toInt()) {
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Múltbeli hónapra nem igényelhető szabadság!" + currentMonth.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else if(isMunkaszunet(datum) || isPiheno(datum)){
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Munkaszüneti/pihenő napra nem igényelhető szabadság!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else if(isWeekend(datum) && !isAthelyezett(datum)){
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Hétvégére nem igényelhető szabadság!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else if(sqliteHelper.checkAlreadyEnteredSzabi(szemely_id, datum)){
+                Toast.makeText(
+                    this@CalendarActivity,
+                    "Erre a napra már van szabadság igénylés!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }else{
                 sqliteHelper.addSzabiJelenletik(szemely_id,datum,status)
-                sqliteHelper.addSzabiKeresek(szemely_id,datum,status,"elinditva")
+                if(isFonok){
+                    sqliteHelper.addSzabiKeresek(szemely_id, datum, status, "elfogadva")
+                }else {
+                    sqliteHelper.addSzabiKeresek(szemely_id, datum, status, "elinditva")
+                }
             }
 
         }
