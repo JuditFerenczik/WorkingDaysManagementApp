@@ -9,13 +9,43 @@
     tools:context=".activities.HomeActivity"
     tools:showIn="@layout/activity_home">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/mikordolg_img"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/mikordolgozomlogo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_udv_fon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/udv_fon"
+        android:textSize="32dp"
+        android:textAlignment="center"
+        android:textFontWeight="@integer/material_motion_duration_long_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mikordolg_img" />
+
+    <ImageView
+        android:id="@+id/fon_img"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:contentDescription="@string/content_description"
+        android:scaleType="centerInside"
+        android:src="@drawable/bosslogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_udv_fon"
+        app:layout_constraintVertical_bias="0.496" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

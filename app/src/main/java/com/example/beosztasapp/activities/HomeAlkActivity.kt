@@ -16,10 +16,12 @@ import kotlinx.android.synthetic.main.activity_home_alk.toolbar
 class HomeAlkActivity : AppCompatActivity() {
     var nev:String? = null
     var ered:Int = 0
+    private lateinit var sqliteHelper: SqlHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_alk)
         setSupportActionBar(toolbar)
+        sqliteHelper = SqlHelper(this)
         nev = intent.getStringExtra("nev").toString()
         val firstName = nev!!.split(" ")[1]
         ered = intent.getIntExtra("szemelyid",-1)
@@ -27,6 +29,9 @@ class HomeAlkActivity : AppCompatActivity() {
         val res: Resources = resources
         val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,firstName )
         home_alk_title.setText(text)
+        if(sqliteHelper.getSzemely(ered).jelszo == "Tesztjelszo"){
+            Toast.makeText(this, "Alapértelmezett jelszót használ, változtassa meg a személyes adatok menüpontban!",Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,8 +61,10 @@ class HomeAlkActivity : AppCompatActivity() {
             }
             R.id.alk_szem ->{
                 Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
-
-                this.startActivity(Intent(this,EditActivity::class.java))
+                val intent = Intent(this,EditActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
                 return true
             }
             R.id.alk_kij ->{

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.beosztasapp.R
 import com.example.beosztasapp.activites.LoginActivity
 import com.example.beosztasapp.activites.RegisterActivity
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.toolbar
 import kotlinx.android.synthetic.main.activity_home_alk.*
 
@@ -18,28 +19,32 @@ class HomeActivity : AppCompatActivity() {
 
     var nev:String? = null
     var ered:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_alk)
+        setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         nev = intent.getStringExtra("nev").toString()
         val firstName = nev!!.split(" ")[1]
         ered = intent.getIntExtra("szemelyid",-1)
+
         Toast.makeText(this, "you are " + nev + " - " + ered, Toast.LENGTH_LONG).show()
         val res: Resources = resources
         val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,firstName )
-        home_alk_title.setText(text)
+
+        home_fon_title.setText(text)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main_menu_fon, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.alk_beoszt -> {
+            R.id.fon_beoszt -> {
                 Toast.makeText(applicationContext, "Beosztásom clicked", Toast.LENGTH_LONG).show()
                 val intent = Intent(this,CalendarActivity::class.java)
                 intent.putExtra("szemelyid",ered)
@@ -58,14 +63,18 @@ class HomeActivity : AppCompatActivity() {
             }
             R.id.fon_szem ->{
                 Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
-
-                this.startActivity(Intent(this, EditActivity::class.java))
+                val intent = Intent(this,EditActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
                 return true
             }
             R.id.fon_reg ->{
                 Toast.makeText(applicationContext, "Regisztráció clicked", Toast.LENGTH_LONG).show()
-
-                this.startActivity(Intent(this, RegisterActivity::class.java))
+                val intent = Intent(this,RegisterActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
                 return true
             }
             R.id.fon_beosztott ->{
@@ -74,8 +83,8 @@ class HomeActivity : AppCompatActivity() {
                 this.startActivity(Intent(this, EditActivity::class.java))
                 return true
             }
-            R.id.alk_kij ->{
-                Toast.makeText(applicationContext, "Kijelentkezés clicked", Toast.LENGTH_LONG).show()
+            R.id.fon_kij ->{
+                Toast.makeText(applicationContext, "Sikeres kijelentkezés!", Toast.LENGTH_LONG).show()
 
                 this.startActivity(Intent(this, LoginActivity::class.java))
                 return true

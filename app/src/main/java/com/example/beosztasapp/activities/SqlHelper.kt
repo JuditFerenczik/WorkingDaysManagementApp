@@ -316,9 +316,15 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
         fun addUser(szemely: szemelyek) {
             val db = this.writableDatabase
             val values = ContentValues()
-            values.put(NEV, szemely.nev)
+            values.put(NEV,szemely.nev )
+            values.put(ADOAZONOSITO, szemely.adoazonosito)
+            values.put(FONOK, szemely.fonok)
+            values.put(MUNKAREND, szemely.munkarend)
+            values.put(BELEPES,szemely.belepes)
             values.put(EMAIL, szemely.email)
-            values.put(JELSZO, szemely.jelszo)
+            values.put(JELSZO, "Tesztjelszo")
+            values.put(SZABADSAG, szemely.eves_szabadsag)
+            values.put(HETI, szemely.heti_munkaido)
             // Inserting Row
             db.insert(TBL_SZEMELYEK, null, values)
             db.close()
@@ -348,6 +354,104 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             db.close()
 
         }
+        fun beosztottaim(szemelyID: Int):ArrayList<szemelyek>{
+            val columns = arrayOf(
+                SZEMELY_ID)
+            // sorting orders
+            //val sortOrder = "$DATUM ASC"
+            val db = this.readableDatabase
+            val selection = "$FONOK = ?"
+            val beosztottList = ArrayList<szemelyek>()
+            // selection arguments
+            val selectionArgs = arrayOf(szemelyID.toString())
+            // query user table with conditions
+            // query the user table
+            val cursor = db.query(
+                TBL_KERESEK, //Table to query
+                columns,            //columns to return
+                selection ,     //columns for the WHERE clause
+                selectionArgs,  //The values for the WHERE clause
+                null,      //group the rows
+                null,       //filter by row groups
+                null)         //The sort order
+            if (cursor.moveToFirst()) {
+                do {
+
+                    val szemely = szemelyek(szemely_id = cursor.getString(cursor.getColumnIndexOrThrow(
+                        SZEMELY_ID)).toInt(),
+                        nev = cursor.getString(cursor.getColumnIndexOrThrow(NEV)),
+                        adoazonosito = cursor.getInt(cursor.getColumnIndexOrThrow(ADOAZONOSITO)),
+                        fonok = cursor.getInt(cursor.getColumnIndexOrThrow(FONOK)),
+                        munkarend = cursor.getInt(cursor.getColumnIndexOrThrow(MUNKAREND)),
+                        belepes = cursor.getString(cursor.getColumnIndexOrThrow(BELEPES)),
+                        email = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL)),
+                        jelszo = cursor.getString(cursor.getColumnIndexOrThrow(JELSZO)),
+                        eves_szabadsag = cursor.getInt(cursor.getColumnIndexOrThrow(SZABADSAG)),
+                        heti_munkaido = cursor.getInt(cursor.getColumnIndexOrThrow(HETI)))
+
+
+                    beosztottList.add(szemely)
+                }while (cursor.moveToNext())
+            }
+            cursor.close()
+            db.close()
+            return beosztottList
+        }
+        fun ertesitesek(szemelyID: Int):ArrayList<Keresek>{
+            val columns = arrayOf(
+                SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
+            // sorting orders
+            val sortOrder = "$SZEMELY_ID ASC"
+            val db = this.readableDatabase
+            val selection = "$SZEMELY_ID = ?"
+            val ertesitesekList = ArrayList<Keresek>()
+            // selection arguments
+            val selectionArgs = arrayOf(szemelyID.toString())
+            // query user table with conditions
+            // query the user table
+            val cursor = db.query(
+                TBL_KERESEK, //Table to query
+                columns,            //columns to return
+                selection ,     //columns for the WHERE clause
+                selectionArgs,  //The values for the WHERE clause
+                null,      //group the rows
+                null,       //filter by row groups
+                sortOrder)         //The sort order
+            if (cursor.moveToFirst()) {
+                do {
+
+                    val ids = cursor.getColumnIndex(SZEMELY_ID)
+                    val currentDatum = cursor.getColumnIndex(DATUM)
+                    val currentStat = cursor.getColumnIndex(STATUSZ)
+                    var currentStatus: StatuszK
+                    var currentAllapot: Allapot
+                    if (cursor.getString(currentStat) == "szabadsag") {
+                        currentStatus = StatuszK.SZABADSAG
+                    } else {
+                        currentStatus = StatuszK.TAPPENZ
+                    }
+                    val currentAll = cursor.getColumnIndex(ALLAPOT)
+                    if (cursor.getString(currentAll) == "elinditva") {
+                        currentAllapot = Allapot.ELINDITVA
+                    } else {
+                        currentAllapot = Allapot.ELFOGADVA
+                    }
+
+                    val keresek = Keresek(
+                        szemely_id = cursor.getString(ids).toInt(),
+                        datum = cursor.getString(currentDatum),
+                        statusz = currentStatus,
+                        allapot = currentAllapot
+                    )
+                    ertesitesekList.add(keresek)
+                }while (cursor.moveToNext())
+            }
+            cursor.close()
+            db.close()
+            return ertesitesekList
+        }
+
+
         fun checkAlreadyEnteredSzabi(szemelyID: Int, datum:String):Boolean{
 
             val db = this.readableDatabase
@@ -460,6 +564,12 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             // delete user record by id
             db.delete(
                 TBL_SZEMELYEK, "$SZEMELY_ID = ?",
+                arrayOf(szemely.szemely_id.toString()))
+            db.delete(
+                TBL_KERESEK, "$SZEMELY_ID = ?",
+                arrayOf(szemely.szemely_id.toString()))
+            db.delete(
+                TBL_JELENLETIK, "$SZEMELY_ID = ?",
                 arrayOf(szemely.szemely_id.toString()))
             db.close()
         }

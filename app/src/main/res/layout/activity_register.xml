@@ -22,14 +22,14 @@
             android:gravity="center"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp"
-            android:text="@string/create_an_account"
+            android:text="@string/add_an_account"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/toolbar_title_text_size" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/hint_first_name"
+                android:hint="@string/hint_name"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,24 +118,47 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_munkr"
+            android:id="@+id/til_munkr"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/et_hint_munkar"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_email">
+
+            <com.example.beosztasapp.utils.MSPEditText
+                android:id="@+id/et_munkr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/et_textSize" />
+        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_belepes"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_munkar"
+                android:hint="@string/belepes"
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_email">
+                app:layout_constraintTop_toBottomOf="@+id/til_munkr">
 
                 <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_munkr"
+                    android:id="@+id/et_belepes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
@@ -153,7 +176,7 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_munkr">
+                app:layout_constraintTop_toBottomOf="@+id/til_belepes">
 
                 <com.example.beosztasapp.utils.MSPEditText
                     android:id="@+id/et_eves"
@@ -190,36 +213,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <LinearLayout
-                android:id="@+id/ll_terms_and_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_hetim">
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cb_terms_and_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false" />
-
-                <com.example.beosztasapp.utils.MSPTextView
-
-                    android:id="@+id/tv_terms_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/txt_terms_condition_marginStart"
-                    android:text="@string/i_agree_to_the_terms_and_conditions"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/txt_terms_and_condition_textSize" />
-
-            </LinearLayout>
 
             <com.example.beosztasapp.utils.MSPButton
                 android:id="@+id/btn_register"
@@ -239,7 +232,7 @@
                 android:textSize="@dimen/btn_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_terms_and_condition">
+                app:layout_constraintTop_toBottomOf="@id/til_hetim">
 
 
             </com.example.beosztasapp.utils.MSPButton>

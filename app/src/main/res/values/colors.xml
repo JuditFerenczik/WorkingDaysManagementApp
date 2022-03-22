@@ -20,6 +20,8 @@
     <color name="szombat">#FFEB9C</color>
    <color name="vasarnap">#FFEB9C</color>
    <color name="athelyezett">#FFEB9C</color>
+    <color name="colorSnackBarSuccess">#88C34A</color>
+    <color name="colorSnackBarError">#F72400</color>
 
     <color name="munkanap_text">#006100</color>
     <color name="pihenonap_text">#9C0006</color>

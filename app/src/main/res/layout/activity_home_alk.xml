@@ -9,7 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:theme="@style/Theme.BeosztasApp.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -25,6 +25,7 @@
             android:gravity="center"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp"
+            android:layout_marginTop="25dp"
             android:text="@string/udvozlet"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/toolbar_title_text_size" />

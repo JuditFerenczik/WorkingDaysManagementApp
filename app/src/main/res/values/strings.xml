@@ -3,7 +3,7 @@
     <string name="content_description">image</string>
     <string name="title_login">Bejelentkezés</string>
     <string name="et_hint_email_id">Email</string>
-    <string name="et_hint_password">Jelszó</string>
+    <string name="et_hint_password">Új jelszó</string>
     <string name="lbl_forgot_password">Elfelejtetted a jelszavad?</string>
     <string name="btn_lbl_login">Bejelentkezés</string>
     <string name="don_t_have_an_account">Még nincs fiókod?</string>
@@ -13,7 +13,7 @@
 
     <string name="hint_last_name">Vezetéknév</string>
     <string name="hint_first_name">Keresztnév</string>
-    <string name="et_hint_confirm_password">Jelszó megerősítése</string>
+    <string name="et_hint_confirm_password">Új jelszó megerősítése</string>
 
     <string name="i_agree_to_the_terms_and_conditions">Elfogadom a <u>Felhasználási feltételeket</u></string>
     <string name="btn_lbl_register">Regisztráció</string>
@@ -84,5 +84,29 @@
     <string name="kijelent">Kijelentkezés</string>
     <string name="reisztracio">Új munkavállaló regisztrációja</string>
     <string name="beosztott">Beosztottjaim</string>
+    <string name="udv_alk">Kövesse és módosítsa  bármikor munkabeosztását!</string>
+    <string name="udv_fon">Kövesse beosztottja munkarendjét percek alatt!</string>
+    <string name="err_msg_enter_email">Az e-mail cím nem lehet üres!</string>
+    <string name="err_msg_enter_password">Új jelszó nem lehet üres!</string>
+    <string name="err_msg_enter_confirm_password">Új jelszó megerősítése nem lehet üres!</string>
+    <string name="err_msg_password_and_confirm_password_mismatch">Az új jelszó és megerősítése nem egyezik!!</string>
+    <string name="edit_succesfull">A jelszó sikeresen módosítva!</string>
+    <string name="err_msg_old_password_mismatch">Régi jelszó nem egyezik!</string>
+    <string name="err_password_or_email_mismatch">A jelszó vagy az email nem egyezik!</string>
+    <string name="err_msg_enter_ado">Adószám nem lehet üres!</string>
+    <string name="err_msg_enter_name">A név nem lehet üres!</string>
+    <string name="err_msg_enter_ado_hibahossz">Az adószám nyolc számjegyű</string>
+    <string name="err_msg_enter_munkareID">A munkarend csak 0 vagy 1 lehet!</string>
+    <string name="err_msg_enter_munk">MunkarendID nem lehet üres!</string>
+    <string name="err_msg_enter_eves">Éves szabadságok száma nem lehet üres!</string>
+    <string name="err_msg_enter_hetimunk">Heti munkaidő nem lehet üres!</string>
+    <string name="err_msg_eves_szab">Éves szaadságok száma nem lehet negatív!</string>
+    <string name="err_msg_hetimunkhossz">Heti munkaidő nem lehet negatív!</string>
+    <string name="err_msg_enter_belepes">A belépés ideje nem lehet üres!</string>
+    <string name="hint_name">Név</string>
+    <string name="add_an_account">Új munkavállaló hozzáadása</string>
+    <string name="err_msg_enter_ado_hiba">Az adószám nem lehet negatív</string>
+    <string name="belepes">Belépés ideje</string>
+    <string name="et_hint_oldpassword">Régi jelszó</string>
 
 </resources>

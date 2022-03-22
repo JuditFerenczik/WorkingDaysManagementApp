@@ -26,11 +26,13 @@ class LoginActivity : AppCompatActivity() {
                 val ered = sqliteHelper.checkSzemely(email,jelszo)
                 val nev = sqliteHelper.getSzemely(ered).nev
                 val fonok = sqliteHelper.getSzemely(ered).fonok
+                Toast.makeText(this, fonok.toString() + " fonok", Toast.LENGTH_LONG).show()
                 var isFonok = false
                 if(fonok ==0) {
+                    Toast.makeText(this, "fonok lett", Toast.LENGTH_LONG).show()
                     isFonok = true
                 }
-                Toast.makeText(this, nev +" - " + ered, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, nev +" - " + ered + isFonok.toString(), Toast.LENGTH_LONG).show()
                 if(isFonok){
                     val intent = Intent(this@LoginActivity, HomeActivity ::class.java)
                     intent.putExtra("szemelyid",ered)
