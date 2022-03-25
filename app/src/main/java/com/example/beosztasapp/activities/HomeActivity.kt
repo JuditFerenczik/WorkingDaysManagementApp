@@ -12,7 +12,7 @@ import com.example.beosztasapp.activites.LoginActivity
 import com.example.beosztasapp.activites.RegisterActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.toolbar
-import kotlinx.android.synthetic.main.activity_home_alk.*
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -78,10 +78,13 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
             R.id.fon_beosztott ->{
-                Toast.makeText(applicationContext, "Beosztott clicked", Toast.LENGTH_LONG).show()
-
-                this.startActivity(Intent(this, EditActivity::class.java))
-                return true
+                Toast.makeText(applicationContext, "Beosztottaim clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this,UsersListActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
+                //  this.startActivity(Intent(this,CalendarActivity::class.java))
+                true
             }
             R.id.fon_kij ->{
                 Toast.makeText(applicationContext, "Sikeres kijelentkezés!", Toast.LENGTH_LONG).show()

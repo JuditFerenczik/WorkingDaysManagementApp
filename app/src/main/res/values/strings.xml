@@ -83,7 +83,7 @@
     <string name="et_hint_munkar">Munkarend azonosító</string>
     <string name="kijelent">Kijelentkezés</string>
     <string name="reisztracio">Új munkavállaló regisztrációja</string>
-    <string name="beosztott">Beosztottjaim</string>
+    <string name="beosztott">Beosztottaim</string>
     <string name="udv_alk">Kövesse és módosítsa  bármikor munkabeosztását!</string>
     <string name="udv_fon">Kövesse beosztottja munkarendjét percek alatt!</string>
     <string name="err_msg_enter_email">Az e-mail cím nem lehet üres!</string>
@@ -108,5 +108,11 @@
     <string name="err_msg_enter_ado_hiba">Az adószám nem lehet negatív</string>
     <string name="belepes">Belépés ideje</string>
     <string name="et_hint_oldpassword">Régi jelszó</string>
+    <string name="hint_email">email</string>
+    <string name="hint_password">jelszó</string>
+    <string name="text_accounts">Beosztottak</string>
+    <string name="text_hello">Hello</string>
+    <string name="text_title">Beosztottaim</string>
+    <string name="hint_belepes">belépés</string>
 
 </resources>

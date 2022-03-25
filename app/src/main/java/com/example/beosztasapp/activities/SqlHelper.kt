@@ -356,7 +356,8 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
         }
         fun beosztottaim(szemelyID: Int):ArrayList<szemelyek>{
             val columns = arrayOf(
-                SZEMELY_ID)
+                SZEMELY_ID, NEV, ADOAZONOSITO, FONOK, MUNKAREND, BELEPES, EMAIL, JELSZO, SZABADSAG,
+                HETI)
             // sorting orders
             //val sortOrder = "$DATUM ASC"
             val db = this.readableDatabase
@@ -367,7 +368,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             // query user table with conditions
             // query the user table
             val cursor = db.query(
-                TBL_KERESEK, //Table to query
+                TBL_SZEMELYEK, //Table to query
                 columns,            //columns to return
                 selection ,     //columns for the WHERE clause
                 selectionArgs,  //The values for the WHERE clause

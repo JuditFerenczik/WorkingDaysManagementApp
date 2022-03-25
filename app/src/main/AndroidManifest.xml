@@ -41,10 +41,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BeosztasApp.NoActionBar" />
         <activity
+            android:name=".activities.UsersListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".activites.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BeosztasApp.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

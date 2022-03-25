@@ -140,30 +140,16 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/et_textSize" />
         </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_belepes"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+            <DatePicker
+                android:id="@+id/et_belepes"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/belepes"
-                android:textColorHint="@color/colorSecondaryText"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_munkr">
-
-                <com.example.beosztasapp.utils.MSPEditText
-                    android:id="@+id/et_belepes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/et_textSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                app:layout_constraintTop_toBottomOf="@+id/til_munkr"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_eves"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -176,7 +162,7 @@
                 android:textColorHint="@color/colorSecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_belepes">
+                app:layout_constraintTop_toBottomOf="@+id/et_belepes">
 
                 <com.example.beosztasapp.utils.MSPEditText
                     android:id="@+id/et_eves"

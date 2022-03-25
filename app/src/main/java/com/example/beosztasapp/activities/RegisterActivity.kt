@@ -15,6 +15,7 @@ import com.example.beosztasapp.activities.szemelyek
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -31,12 +32,15 @@ class RegisterActivity : AppCompatActivity() {
         sqliteHelper = SqlHelper(this)
 
     btn_register.setOnClickListener {
+
+
+
          if(validateRegisterDetails()){
              val newSzemely = szemelyek()
              newSzemely.nev= et_name.text.toString()
                  newSzemely.adoazonosito= et_ado.text.toString().toInt()
                  newSzemely.fonok= ered
-                newSzemely.belepes= et_belepes.text.toString()
+                newSzemely.belepes= et_belepes.getDayOfMonth().toString()+"."+ (et_belepes.getMonth() + 1).toString()+"."+et_belepes.getYear().toString()
                  newSzemely.email= et_email.text.toString()
                  newSzemely.munkarend= et_munkr.text.toString().toInt()
                //  newSzemely.jelszo= "Tesztjelszo"
@@ -98,60 +102,60 @@ class RegisterActivity : AppCompatActivity() {
              false
          }
 
-         et_munkr.text.toString().toInt() !=0 && et_munkr.text.toString().toInt() != 1->{
+      et_munkr.text.toString().toInt() !=0 && et_munkr.text.toString().toInt() != 1->{
              showErrorSnackBar(resources.getString(R.string.err_msg_enter_munkareID), true)
              false
          }
-         TextUtils.isEmpty(et_belepes.text.toString().trim{it <= ' '}) ->{
-             showErrorSnackBar(resources.getString(R.string.err_msg_enter_belepes), true)
+/*       TextUtils.isEmpty(et_belepes.text.toString().trim{it <= ' '}) ->{
+        showErrorSnackBar(resources.getString(R.string.err_msg_enter_belepes), true)
+        false
+    }*/
+
+     TextUtils.isEmpty(et_eves.text.toString().trim{it <= ' '}) ->{
+         showErrorSnackBar(resources.getString(R.string.err_msg_enter_eves), true)
+         false
+     }
+     TextUtils.isEmpty(et_hetim.text.toString().trim{it <= ' '}) ->{
+         showErrorSnackBar(resources.getString(R.string.err_msg_enter_hetimunk), true)
+         false
+     }
+/*
+         et_eves.text.toString().toInt() <0 ->{
+             showErrorSnackBar(resources.getString(R.string.err_msg_eves_szab), true)
              false
          }
-
-          TextUtils.isEmpty(et_eves.text.toString().trim{it <= ' '}) ->{
-              showErrorSnackBar(resources.getString(R.string.err_msg_enter_eves), true)
-              false
-          }
-          TextUtils.isEmpty(et_hetim.text.toString().trim{it <= ' '}) ->{
-              showErrorSnackBar(resources.getString(R.string.err_msg_enter_hetimunk), true)
-              false
-          }
-/*
-              et_eves.text.toString().toInt() <0 ->{
-                  showErrorSnackBar(resources.getString(R.string.err_msg_eves_szab), true)
-                  false
-              }
-              et_hetim.text.toString().toInt() <0 ->{
-                  showErrorSnackBar(resources.getString(R.string.err_msg_hetimunkhossz), true)
-                  false
-              }*/
+         et_hetim.text.toString().toInt() <0 ->{
+             showErrorSnackBar(resources.getString(R.string.err_msg_hetimunkhossz), true)
+             false
+         }*/
 
 
- else -> {
-     showErrorSnackBar(resources.getString(R.string.edit_succesfull), false)
-     true
- }
+else -> {
+showErrorSnackBar(resources.getString(R.string.edit_succesfull), false)
+true
+}
 
 
 }
 }
 fun showErrorSnackBar(message: String, errorMessage: Boolean) {
 val snackBar =
- Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
 val snackBarView = snackBar.view
 if (errorMessage) {
- snackBarView.setBackgroundColor(
-     ContextCompat.getColor(
-         this@RegisterActivity,
-         R.color.colorSnackBarError
-     )
- )
+snackBarView.setBackgroundColor(
+ContextCompat.getColor(
+    this@RegisterActivity,
+    R.color.colorSnackBarError
+)
+)
 } else {
- snackBarView.setBackgroundColor(
-     ContextCompat.getColor(
-         this@RegisterActivity,
-         R.color.colorSnackBarSuccess
-     )
- )
+snackBarView.setBackgroundColor(
+ContextCompat.getColor(
+    this@RegisterActivity,
+    R.color.colorSnackBarSuccess
+)
+)
 }
 snackBar.show()
 }
