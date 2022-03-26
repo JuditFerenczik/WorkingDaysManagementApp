@@ -20,22 +20,14 @@ class ErtesitesActivity : AppCompatActivity() {
         ered = intent.getIntExtra("szemelyid",-1)
         sqliteHelper = SqlHelper(this)
 
-        // ...
-        // Lookup the recyclerview in activity layout
         val container = findViewById<View>(R.id.recyclerViewErtesites) as RecyclerView
-        // Initialize contacts
-        // contacts = Contact.createContactsList(20);
-        //   ertesitesekF= sqliteHelper.getSzabadsag(ered)
         val keres = sqliteHelper.ertesitesek(ered)
 
-
-        // Create adapter passing in the sample user data
         val adapter = ErtesitesRecyclerActivity.ErtesitesRecycleAdapter(keres)
-        // Attach the adapter to the recyclerview to populate items
+
         container.adapter = adapter
-        // Set layout manager to position the items
+
         container.layoutManager = LinearLayoutManager(this)
-        // That's all!
 
 
 

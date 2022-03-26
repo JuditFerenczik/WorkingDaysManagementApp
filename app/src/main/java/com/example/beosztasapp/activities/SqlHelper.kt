@@ -60,8 +60,8 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             val createJelenletik =("CREATE TABLE IF NOT EXISTS " + TBL_JELENLETIK + "(" +
                     SZEMELY_ID + " INTEGER, " + DATUM + " TEXT,"+
                     STATUSZ +" TEXT, " + ALLAPOT + " TEXT )")
-            val createmunkarend =("CREATE TABLE IF NOT EXISTS " + TBL_MUNKAREND + "(" +
-                    MUNKARENDID+ " INTEGER PRIMARY KEY, " + MUNKAKOZI + " INTEGER," +
+            val createmunkarend =("CREATE TABLE IF NOT EXISTS " + TBL_MUNKAREND + "(" +  //PRIMARY KEY
+                    MUNKARENDID+ " INTEGER , " + MUNKAKOZI + " INTEGER," +
                     KEZDES+ " TEXT,"+ BEFEJEZES + " TEXT,"+ SZUNETKEZD +" TEXT,"+
             SZUNETVEG +" TEXT, " + LEDOLGOZOTTORA + " INTEGER )")
 
@@ -611,7 +611,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             db.close()
         }
         fun insertMunkarend(munkakozi: Int, kezdes:String, befejezes:String,SZkezdes:String, SZbefejezes:String, ledolgozott:Int){
-            val db = this.writableDatabase
+            val db = this.writableDatabase  // will need an munkarend_id
             val values = ContentValues()
             values.put(MUNKAKOZI,munkakozi)
             values.put(KEZDES, kezdes)
