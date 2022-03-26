@@ -3,6 +3,7 @@ package com.example.beosztasapp.activities
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,12 +35,28 @@ class UsersListActivity : AppCompatActivity() {
         val adapter = UsersRecyclerAdapter(contacts)
         // Attach the adapter to the recyclerview to populate items
         beosztottak.adapter = adapter
+        adapter?.setOnClickDeleteItem {
+            deleteBeosztott(it.szemely_id)
+        }
         // Set layout manager to position the items
         beosztottak.layoutManager = LinearLayoutManager(this)
         // That's all!
-    }
-    /**
-     * This method is to initialize views
-     */
 
+
+    }
+   private fun deleteBeosztott(id:Int){
+       val builder = AlertDialog.Builder(this)
+       builder.setMessage("Biztos törölni akarja a beosztottat?")
+       builder.setCancelable(true)
+       builder.setPositiveButton("Igen"){dialog, _->
+           sqliteHelper.deleteUser(id)
+
+           dialog.dismiss()
+       }
+       builder.setNegativeButton("Nem"){dialog, _->
+           dialog.dismiss()
+       }
+       val alert = builder.create()
+       alert.show()
+   }
 }

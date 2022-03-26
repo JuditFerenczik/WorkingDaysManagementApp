@@ -9,7 +9,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
     {
         companion object{
             private const val DATABASE_NAME="vizsgaremek.db"
-            private const val DATABASE_VERSION= 2
+            private const val DATABASE_VERSION= 3
             private const val TBL_SZEMELYEK ="szemelyek"
             private const val TBL_MUNKAREND ="munkarend"
             private  const val TBL_KERESEK = "keresek"
@@ -41,6 +41,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             private  const val PIHENO ="piheno"
             private  const val  STATUSZ ="statusz"
             private  const val ALLAPOT ="allapot"
+            private  const val KERESEK_ID = "azon"
 
 
         }
@@ -53,13 +54,14 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                     EMAIL +" TEXT," + JELSZO + " TEXT,"+
                     SZABADSAG + " INTEGER, "+  HETI + " INTEGER" + ")" )
             val createKeresek =("CREATE TABLE IF NOT EXISTS " + TBL_KERESEK + "(" +
+                    KERESEK_ID + " INTEGER PRIMARY KEY, " +
                     SZEMELY_ID + " INTEGER, " + DATUM + " TEXT,"+
                     STATUSZ +" TEXT, " + ALLAPOT + " TEXT )")
             val createJelenletik =("CREATE TABLE IF NOT EXISTS " + TBL_JELENLETIK + "(" +
                     SZEMELY_ID + " INTEGER, " + DATUM + " TEXT,"+
                     STATUSZ +" TEXT, " + ALLAPOT + " TEXT )")
             val createmunkarend =("CREATE TABLE IF NOT EXISTS " + TBL_MUNKAREND + "(" +
-                    MUNKARENDID+ " INTEGER, " + MUNKAKOZI + " INTEGER," +
+                    MUNKARENDID+ " INTEGER PRIMARY KEY, " + MUNKAKOZI + " INTEGER," +
                     KEZDES+ " TEXT,"+ BEFEJEZES + " TEXT,"+ SZUNETKEZD +" TEXT,"+
             SZUNETVEG +" TEXT, " + LEDOLGOZOTTORA + " INTEGER )")
 
@@ -72,11 +74,11 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             db?.execSQL("insert into szemelyek(nev, adoazonosito,fonok, munkarend, belepes, email, jelszo, eves_szabadsag, heti_munkaido) values('Dotzi Pascal',234545632,4,1, '2022.1.2','dotzi@gmail.com', 'abc',30,35)")
             db?.execSQL("insert into szemelyek(nev, adoazonosito,fonok, munkarend, belepes, email, jelszo, eves_szabadsag, heti_munkaido) values('Pajkos Doro',235662432,4,1, '2022.2.3','doro@gmail.com', '456',22,40)")
             db?.execSQL("insert into szemelyek(nev, adoazonosito,fonok, munkarend, belepes, email, jelszo, eves_szabadsag, heti_munkaido) values('Kállai Imre',235566432,0,0, '2021.11.3','kallai@gmail.com', '123',26,40)")
-            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(2,'2022.04.13','szabasag','elfogadva')")
-            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(1,'2022.02.25','szabasag','elinditva')")
+            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(2,'2022.04.13','szabadsag','elfogadva')")
+            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(1,'2022.02.25','szabadsag','elinditva')")
             db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(1,'2022.03.07','tappenz','elfogadva')")
             db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(1,'2022.03.08','tappenz','elinditva')")
-            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(3,'2022.04.14','szabasag','elinditva')")
+            db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(3,'2022.04.14','szabadsag','elinditva')")
             db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(2,'2022.05.17','tappenz','elfogadva')")
             db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(4,'2022.06.13','tappenz','elfogadva')")
             db?.execSQL("insert into keresek(szemely_id ,datum, statusz, allapot) values(4,'2022.09.16','tappenz','elfogadva')")
@@ -166,11 +168,25 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             return -1
         }
 
-        /**
-         * This method is to fetch all user and return the list of user records
-         *
-         * @return list
-         */
+        fun ertesitesekF(fonokID:Int): ArrayList<ErtesitesF> {
+            val resultList = ArrayList<ErtesitesF>()
+            val db = this.readableDatabase
+            val query = "select   azon  ,datum, statusz,szemelyek.szemely_id,nev from szemelyek inner join keresek on szemelyek.szemely_id = keresek.szemely_id WHERE allapot='elinditva' And fonok =  " + fonokID.toString() + ";"
+
+            db.use {
+                val cursor = db.rawQuery(query, null)
+                while (cursor.moveToNext()) {
+                    val ertesites = ErtesitesF(keresek_id = cursor.getInt(0),  mikor = cursor.getString(1),
+                        tipus = cursor.getString(2),  szemely_id = cursor.getInt(3),
+                       nev  = cursor.getString(4) )
+                    resultList.add(ertesites)
+                }
+               // cursor.close()
+            }
+
+          //  db.close
+            return resultList
+        }
         fun getAllUser(): ArrayList<szemelyek> {
             // array of columns to fetch
             val columns = arrayOf(
@@ -255,7 +271,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
 
        fun getSzabadsag(szemelyID: Int):ArrayList<Keresek>{
            val columns = arrayOf(
-               SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
+              KERESEK_ID, SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
            // sorting orders
            val sortOrder = "$DATUM ASC"
            val db = this.readableDatabase
@@ -275,7 +291,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                sortOrder)         //The sort order
            if (cursor.moveToFirst()) {
                do {
-
+                   val kids = cursor.getColumnIndex(KERESEK_ID)
                    val ids = cursor.getColumnIndex(SZEMELY_ID)
                    val currentDatum = cursor.getColumnIndex(DATUM)
                    val currentStat = cursor.getColumnIndex(STATUSZ)
@@ -294,6 +310,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                    }
 
                    val keresek = Keresek(
+                       azon = cursor.getString(kids).toInt(),
                        szemely_id = cursor.getString(ids).toInt(),
                        datum = cursor.getString(currentDatum),
                        statusz = currentStatus,
@@ -400,7 +417,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
         }
         fun ertesitesek(szemelyID: Int):ArrayList<Keresek>{
             val columns = arrayOf(
-                SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
+               KERESEK_ID, SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
             // sorting orders
             val sortOrder = "$SZEMELY_ID ASC"
             val db = this.readableDatabase
@@ -420,7 +437,7 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                 sortOrder)         //The sort order
             if (cursor.moveToFirst()) {
                 do {
-
+                    val kids = cursor.getColumnIndex(KERESEK_ID)
                     val ids = cursor.getColumnIndex(SZEMELY_ID)
                     val currentDatum = cursor.getColumnIndex(DATUM)
                     val currentStat = cursor.getColumnIndex(STATUSZ)
@@ -439,6 +456,61 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                     }
 
                     val keresek = Keresek(
+                        azon =cursor.getString(kids).toInt(),
+                        szemely_id = cursor.getString(ids).toInt(),
+                        datum = cursor.getString(currentDatum),
+                        statusz = currentStatus,
+                        allapot = currentAllapot
+                    )
+                    ertesitesekList.add(keresek)
+                }while (cursor.moveToNext())
+            }
+            cursor.close()
+            db.close()
+            return ertesitesekList
+        }
+        fun ertesitesekSzabi(szemelyID: Int):ArrayList<Keresek>{
+            val columns = arrayOf(
+                KERESEK_ID, SZEMELY_ID, DATUM, STATUSZ, ALLAPOT)
+            // sorting orders
+            val sortOrder = "$SZEMELY_ID ASC"
+            val db = this.readableDatabase
+            val selection = "$SZEMELY_ID = ? AND $ALLAPOT = ?"
+            val ertesitesekList = ArrayList<Keresek>()
+            // selection arguments
+            val selectionArgs = arrayOf(szemelyID.toString(), "elfogadva")
+            // query user table with conditions
+            // query the user table
+            val cursor = db.query(
+                TBL_KERESEK, //Table to query
+                columns,            //columns to return
+                selection ,     //columns for the WHERE clause
+                selectionArgs,  //The values for the WHERE clause
+                null,      //group the rows
+                null,       //filter by row groups
+                sortOrder)         //The sort order
+            if (cursor.moveToFirst()) {
+                do {
+                    val kids = cursor.getColumnIndex(KERESEK_ID)
+                    val ids = cursor.getColumnIndex(SZEMELY_ID)
+                    val currentDatum = cursor.getColumnIndex(DATUM)
+                    val currentStat = cursor.getColumnIndex(STATUSZ)
+                    var currentStatus: StatuszK
+                    var currentAllapot: Allapot
+                    if (cursor.getString(currentStat) == "szabadsag") {
+                        currentStatus = StatuszK.SZABADSAG
+                    } else {
+                        currentStatus = StatuszK.TAPPENZ
+                    }
+                    val currentAll = cursor.getColumnIndex(ALLAPOT)
+                    if (cursor.getString(currentAll) == "elinditva") {
+                        currentAllapot = Allapot.ELINDITVA
+                    } else {
+                        currentAllapot = Allapot.ELFOGADVA
+                    }
+
+                    val keresek = Keresek(
+                        azon =cursor.getString(kids).toInt(),
                         szemely_id = cursor.getString(ids).toInt(),
                         datum = cursor.getString(currentDatum),
                         statusz = currentStatus,
@@ -538,11 +610,19 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
             db.insert(TBL_JELENLETIK, null, values)
             db.close()
         }
-        /**
-         * This method to update user record
-         *
-         * @param user
-         */
+        fun insertMunkarend(munkakozi: Int, kezdes:String, befejezes:String,SZkezdes:String, SZbefejezes:String, ledolgozott:Int){
+            val db = this.writableDatabase
+            val values = ContentValues()
+            values.put(MUNKAKOZI,munkakozi)
+            values.put(KEZDES, kezdes)
+            values.put(BEFEJEZES, befejezes)
+            values.put(SZUNETKEZD, SZkezdes)
+            values.put(LEDOLGOZOTTORA, ledolgozott)
+                // Inserting Row
+            db.insert(TBL_MUNKAREND, null, values)
+            db.close()
+        }
+
         fun updateUser(szemely: szemelyek) {
             val db = this.writableDatabase
             val values = ContentValues()
@@ -555,23 +635,37 @@ class SqlHelper(context:Context):SQLiteOpenHelper(context,DATABASE_NAME,null, DA
                 arrayOf(szemely.szemely_id.toString()))
             db.close()
         }
-        /**
-         * This method is to delete user record
-         *
-         * @param user
-         */
-        fun deleteUser(szemely: szemelyek) {
+
+        fun elfogadSzabi(keresekID:Int) {
+            val db = this.writableDatabase
+            val values = ContentValues()
+            values.put(ALLAPOT, "elfogadva")
+            db.update(
+                TBL_KERESEK, values, "$KERESEK_ID = ?",
+                arrayOf(keresekID.toString()))
+            db.close()
+        }
+
+        fun elutasitSzabi(keresID: Int) {
+            val db = this.writableDatabase
+            db.delete(
+                TBL_KERESEK, "$KERESEK_ID = ?",
+                arrayOf(keresID.toString()))
+
+            db.close()
+        }
+        fun deleteUser(szemelyID: Int) {
             val db = this.writableDatabase
             // delete user record by id
             db.delete(
                 TBL_SZEMELYEK, "$SZEMELY_ID = ?",
-                arrayOf(szemely.szemely_id.toString()))
+                arrayOf(szemelyID.toString()))
             db.delete(
                 TBL_KERESEK, "$SZEMELY_ID = ?",
-                arrayOf(szemely.szemely_id.toString()))
+                arrayOf(szemelyID.toString()))
             db.delete(
                 TBL_JELENLETIK, "$SZEMELY_ID = ?",
-                arrayOf(szemely.szemely_id.toString()))
+                arrayOf(szemelyID.toString()))
             db.close()
         }
     }

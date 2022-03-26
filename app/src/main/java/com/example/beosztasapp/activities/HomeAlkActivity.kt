@@ -53,10 +53,18 @@ class HomeAlkActivity : AppCompatActivity() {
             }
             R.id.alk_ertesit ->{
                 Toast.makeText(applicationContext, "Értesítéseim clicked", Toast.LENGTH_LONG).show()
-                return true
+                val intent = Intent(this,ErtesitesActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
+                true
             }
             R.id.alk_szab ->{
-                Toast.makeText(applicationContext, "Korábbi szabik clicked", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Szabadságok clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this,SzabiActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
                 return true
             }
             R.id.alk_szem ->{

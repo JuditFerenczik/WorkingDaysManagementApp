@@ -91,6 +91,7 @@
     <string name="err_msg_enter_confirm_password">Új jelszó megerősítése nem lehet üres!</string>
     <string name="err_msg_password_and_confirm_password_mismatch">Az új jelszó és megerősítése nem egyezik!!</string>
     <string name="edit_succesfull">A jelszó sikeresen módosítva!</string>
+    <string name="register_succesfull">Új munkavállaló hozzáadva!!</string>
     <string name="err_msg_old_password_mismatch">Régi jelszó nem egyezik!</string>
     <string name="err_password_or_email_mismatch">A jelszó vagy az email nem egyezik!</string>
     <string name="err_msg_enter_ado">Adószám nem lehet üres!</string>
@@ -114,5 +115,16 @@
     <string name="text_hello">Hello</string>
     <string name="text_title">Beosztottaim</string>
     <string name="hint_belepes">belépés</string>
+    <string name="btn_delete">Törlés</string>
+    <string name="btn_elutasit">Elutasít</string>
+    <string name="btn_elfogad">Elfogadás</string>
+    <string name="hint_datum">Dátum</string>
+    <string name="hint_tipus">Típus</string>
+    <string name="err_msg_already_entered">Ezzel az e-mail címmel már létezik munkavállaló!</string>
+    <string name="hint_allapot">Állapot</string>
+    <string name="btn_lbl_add">Munkarend hozzáadása</string>
+    <string name="add_an_munkarend">Munkarend hozzáadása</string>
+    <string name="hint_kezdes">Kezdés időpontja</string>
+    <string name="et_hint_befejezes">Befejezés időpontja</string>
 
 </resources>

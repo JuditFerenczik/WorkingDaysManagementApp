@@ -19,15 +19,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="@string/hint_name"
+                android:text="@string/hint_allapot"
                 android:textColor="@color/calendar_dark" />
 
             <TextView
-                android:id="@+id/textViewName"
+                android:id="@+id/textAllapot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/hint_name"
+                android:text="@string/hint_allapot"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
@@ -45,7 +45,7 @@
                 android:textColor="@color/calendar_dark" />
 
             <TextView
-                android:id="@+id/textViewDate"
+                android:id="@+id/textDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -67,58 +67,12 @@
                 android:textColor="@color/calendar_dark" />
 
             <TextView
-                android:id="@+id/textViewTipus"
+                android:id="@+id/textTipus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/hint_tipus"
                 android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.example.beosztasapp.utils.MSPButton
-                android:id="@+id/btn_elfogad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/button_background"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:paddingTop="@dimen/btn_padding"
-                android:paddingBottom="@dimen/btn_padding"
-                android:text="@string/btn_elfogad"
-                android:textColor="@color/white"
-                android:textSize="@dimen/btn_textsize">
-
-            </com.example.beosztasapp.utils.MSPButton>
-            <com.example.beosztasapp.utils.MSPButton
-                android:id="@+id/btn_elutasit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_background"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:paddingTop="@dimen/btn_padding"
-                android:paddingBottom="@dimen/btn_padding"
-                android:text="@string/btn_elutasit"
-                android:textColor="@color/white"
-                android:textSize="@dimen/btn_textsize">
-
-            </com.example.beosztasapp.utils.MSPButton>
-
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

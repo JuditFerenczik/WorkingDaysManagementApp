@@ -13,6 +13,22 @@
         android:theme="@style/Theme.BeosztasApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.MunkarendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SzabiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ErtesitesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ErtesitesRecyclerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ErtesitesFActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.HomeAlkActivity"
             android:exported="false"
             android:label="@string/title_activity_home_alk"
@@ -42,13 +58,12 @@
             android:theme="@style/Theme.BeosztasApp.NoActionBar" />
         <activity
             android:name=".activities.UsersListActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activites.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BeosztasApp.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

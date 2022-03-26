@@ -119,6 +119,10 @@ class RegisterActivity : AppCompatActivity() {
          showErrorSnackBar(resources.getString(R.string.err_msg_enter_hetimunk), true)
          false
      }
+            sqliteHelper.checkUser(et_email.text.toString().trim{it <= ' '}) ->{
+                showErrorSnackBar(resources.getString(R.string.err_msg_already_entered), true)
+                false
+            }
 /*
          et_eves.text.toString().toInt() <0 ->{
              showErrorSnackBar(resources.getString(R.string.err_msg_eves_szab), true)
@@ -131,7 +135,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
 else -> {
-showErrorSnackBar(resources.getString(R.string.edit_succesfull), false)
+showErrorSnackBar(resources.getString(R.string.register_succesfull), false)
 true
 }
 

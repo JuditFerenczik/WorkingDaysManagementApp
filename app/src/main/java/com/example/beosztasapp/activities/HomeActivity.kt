@@ -54,11 +54,19 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             R.id.fon_ertesit ->{
-                Toast.makeText(applicationContext, "Értesítéseim clicked", Toast.LENGTH_LONG).show()
-                return true
+                Toast.makeText(applicationContext, "Beosztásom clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this,ErtesitesFActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
+                true
             }
             R.id.fon_szab ->{
-                Toast.makeText(applicationContext, "Korábbi szabik clicked", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Szabadságok clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this,SzabiActivity::class.java)
+                intent.putExtra("szemelyid",ered)
+                intent.putExtra("nev",nev)
+                startActivity(intent)
                 return true
             }
             R.id.fon_szem ->{
