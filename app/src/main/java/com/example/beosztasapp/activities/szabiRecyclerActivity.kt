@@ -17,7 +17,7 @@ class szabiRecyclerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ertesites_recycler)
     }
 
-    class szabiRecyclerActivity(private val dataSet: List<Keresek>) :  //ArrayList<szemelyek>
+    class szabiRecyclerActivity(private val dataSet: List<Keresek>) :
         RecyclerView.Adapter<szabiRecyclerActivity.ViewHolder>() {
 
         /**
@@ -37,18 +37,15 @@ class szabiRecyclerActivity : AppCompatActivity() {
         ): szabiRecyclerActivity.ViewHolder {
             val view = LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.activity_szaby_recycler, viewGroup, false)
-            // .inflate(R.layout.item_user_recycler, viewGroup, false)
             return ViewHolder(view)
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(
             viewHolder: szabiRecyclerActivity.ViewHolder,
             position: Int
         ) {
 
             val tmpkereses: Keresek = dataSet[position]
-            // Set item views based on your views and data model
             val textView1 = viewHolder.dateTextView
             textView1.setText(tmpkereses.datum)
             val textView2 = viewHolder.tipusTextView

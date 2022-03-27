@@ -9,37 +9,43 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beosztasapp.R
 
 
-lateinit var ertesitesekF: ArrayList<ErtesitesF>
-private lateinit var sqliteHelper: SqlHelper
+//ateinit var ertesitesekF: ArrayList<ErtesitesF>
 
 
-class  ErtesitesFRecycleAdapter(private val dataSet: List<ErtesitesF>) :  //ArrayList<szemelyek>
-    RecyclerView.Adapter< ErtesitesFRecycleAdapter.ViewHolder>() {
+class ErtesitesFRecycleAdapter() :
+    RecyclerView.Adapter<ErtesitesFRecycleAdapter.ViewHolder>() {
+   private var dataSet:ArrayList<ErtesitesF> = ArrayList()
+    fun addItems(items: ArrayList<ErtesitesF>){
+        this.dataSet= items
+
+}
 
     private var onClickElfogadItem: ((ErtesitesF) -> Unit)? = null
     private var onClickElutasitItem: ((ErtesitesF) -> Unit)? = null
 
-    fun setOnClickElfogadItem(callback:(ErtesitesF) -> Unit){
+    fun setOnClickElfogadItem(callback: (ErtesitesF) -> Unit) {
         this.onClickElfogadItem = callback
     }
 
 
-    fun setOnClickElutasitItem(callback:(ErtesitesF) -> Unit){
+    fun setOnClickElutasitItem(callback: (ErtesitesF) -> Unit) {
         this.onClickElutasitItem = callback
     }
 
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):ErtesitesFRecycleAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        viewGroup: ViewGroup,
+        viewType: Int
+    ): ErtesitesFRecycleAdapter.ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_contact, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder:ErtesitesFRecycleAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ErtesitesFRecycleAdapter.ViewHolder, position: Int) {
 
         val tmpErtesites: ErtesitesF = dataSet[position]
-        // Set item views based on your views and data model
         val textView = viewHolder.nameTextView
         textView.setText(tmpErtesites.nev)
         val textView1 = viewHolder.dateTextView
@@ -49,8 +55,7 @@ class  ErtesitesFRecycleAdapter(private val dataSet: List<ErtesitesF>) :  //Arra
         viewHolder.elfogadButton.setOnClickListener { onClickElfogadItem?.invoke(tmpErtesites) }
         viewHolder.elutasitButton.setOnClickListener { onClickElutasitItem?.invoke(tmpErtesites) }
 
-        }
-
+    }
 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -62,7 +67,7 @@ class  ErtesitesFRecycleAdapter(private val dataSet: List<ErtesitesF>) :  //Arra
 
     }
 
-    override fun getItemCount():Int{
+    override fun getItemCount(): Int {
         return dataSet.size
     }
 

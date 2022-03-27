@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beosztasapp.R
@@ -16,7 +15,8 @@ class ErtesitesRecyclerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ertesites_recycler)
     }
-    class ErtesitesRecycleAdapter(private val dataSet: List<Keresek>) :  //ArrayList<szemelyek>
+
+    class ErtesitesRecycleAdapter(private val dataSet: List<Keresek>) :
         RecyclerView.Adapter<ErtesitesRecycleAdapter.ViewHolder>() {
 
         /**
@@ -29,17 +29,16 @@ class ErtesitesRecyclerActivity : AppCompatActivity() {
             val tipusTextView = itemView.findViewById<TextView>(R.id.textTipus)
 
         }
+
         override fun onCreateViewHolder(
             viewGroup: ViewGroup,
             viewType: Int
         ): ErtesitesRecycleAdapter.ViewHolder {
             val view = LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.activity_ertesites_recycler, viewGroup, false)
-            // .inflate(R.layout.item_user_recycler, viewGroup, false)
             return ViewHolder(view)
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(
             viewHolder: ErtesitesRecycleAdapter.ViewHolder,
             position: Int

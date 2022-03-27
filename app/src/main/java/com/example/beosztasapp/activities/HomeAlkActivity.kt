@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.activity_home_alk.toolbar
 
 
 class HomeAlkActivity : AppCompatActivity() {
-    var nev:String? = null
-    var ered:Int = 0
+    var nev: String? = null
+    var ered: Int = 0
     private lateinit var sqliteHelper: SqlHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +24,21 @@ class HomeAlkActivity : AppCompatActivity() {
         sqliteHelper = SqlHelper(this)
         nev = intent.getStringExtra("nev").toString()
         val firstName = nev!!.split(" ")[1]
-        ered = intent.getIntExtra("szemelyid",-1)
-        Toast.makeText(this, "you are " + nev + " - " + ered, Toast.LENGTH_LONG).show()
+        ered = intent.getIntExtra("szemelyid", -1)
+       // Toast.makeText(this, "you are " + nev + " - " + ered, Toast.LENGTH_LONG).show()
         val res: Resources = resources
-        val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet,firstName )
+        val text: String = res.getString(com.example.beosztasapp.R.string.udvozlet, firstName)
         home_alk_title.setText(text)
-        if(sqliteHelper.getSzemely(ered).jelszo == "Tesztjelszo"){
-            Toast.makeText(this, "Alapértelmezett jelszót használ, változtassa meg a személyes adatok menüpontban!",Toast.LENGTH_LONG).show()
+        if (sqliteHelper.getSzemely(ered).jelszo == "Tesztjelszo") {
+            Toast.makeText(
+                this,
+                "Alapértelmezett jelszót használ, változtassa meg a személyes adatok menüpontban!",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
@@ -43,42 +46,40 @@ class HomeAlkActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.alk_beoszt -> {
-                Toast.makeText(applicationContext, "Beosztásom clicked", Toast.LENGTH_LONG).show()
-                val intent = Intent(this,CalendarActivity::class.java)
-                intent.putExtra("szemelyid",ered)
-                intent.putExtra("nev",nev)
-                startActivity(intent)
-              //  this.startActivity(Intent(this,CalendarActivity::class.java))
-                true
-            }
-            R.id.alk_ertesit ->{
-                Toast.makeText(applicationContext, "Értesítéseim clicked", Toast.LENGTH_LONG).show()
-                val intent = Intent(this,ErtesitesActivity::class.java)
-                intent.putExtra("szemelyid",ered)
-                intent.putExtra("nev",nev)
+                // Toast.makeText(applicationContext, "Beosztásom clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, CalendarActivity::class.java)
+                intent.putExtra("szemelyid", ered)
+                intent.putExtra("nev", nev)
                 startActivity(intent)
                 true
             }
-            R.id.alk_szab ->{
-                Toast.makeText(applicationContext, "Szabadságok clicked", Toast.LENGTH_LONG).show()
-                val intent = Intent(this,SzabiActivity::class.java)
-                intent.putExtra("szemelyid",ered)
-                intent.putExtra("nev",nev)
+            R.id.alk_ertesit -> {
+                //  Toast.makeText(applicationContext, "Értesítéseim clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, ErtesitesActivity::class.java)
+                intent.putExtra("szemelyid", ered)
+                intent.putExtra("nev", nev)
+                startActivity(intent)
+                true
+            }
+            R.id.alk_szab -> {
+                //  Toast.makeText(applicationContext, "Szabadságok clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, SzabiActivity::class.java)
+                intent.putExtra("szemelyid", ered)
+                intent.putExtra("nev", nev)
                 startActivity(intent)
                 return true
             }
-            R.id.alk_szem ->{
-                Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
-                val intent = Intent(this,EditActivity::class.java)
-                intent.putExtra("szemelyid",ered)
-                intent.putExtra("nev",nev)
+            R.id.alk_szem -> {
+                // Toast.makeText(applicationContext, "Személyes adatok clicked", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, EditActivity::class.java)
+                intent.putExtra("szemelyid", ered)
+                intent.putExtra("nev", nev)
                 startActivity(intent)
                 return true
             }
-            R.id.alk_kij ->{
-                Toast.makeText(applicationContext, "Kijelentkezés clicked", Toast.LENGTH_LONG).show()
-
-                this.startActivity(Intent(this,LoginActivity::class.java))
+            R.id.alk_kij -> {
+                //   Toast.makeText(applicationContext, "Kijelentkezés clicked", Toast.LENGTH_LONG).show()
+                this.startActivity(Intent(this, LoginActivity::class.java))
                 return true
             }
             else -> super.onOptionsItemSelected(item)

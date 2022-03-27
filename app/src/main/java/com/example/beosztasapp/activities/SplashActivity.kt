@@ -26,12 +26,10 @@ class SplashActivity : AppCompatActivity() {
         }
         Handler().postDelayed(
             {
-                startActivity(Intent(this@SplashActivity, LoginActivity ::class.java))
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish()
             }, 2500
         )
 
-       // val typeface: Typeface =Typeface.createFromAsset(assets, "zai_I♥Covid-19.ttf")
-        //tv_app_name.typeface = typeface
     }
 }
