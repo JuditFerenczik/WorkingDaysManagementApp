@@ -1,6 +1,7 @@
 package com.example.beosztasapp.activities
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -38,6 +39,15 @@ class UsersListActivity : AppCompatActivity() {
 
 
     }
+    override fun onBackPressed() {
+        // Toast.makeText(this, "back cklicked", Toast.LENGTH_LONG).show()
+
+            //  Toast.makeText(this, szemely_id.toString() + nev+isFonok.toString(), Toast.LENGTH_LONG).show()
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra("szemelyid", ered)
+            intent.putExtra("nev", nev)
+            startActivity(intent)
+        }
 
     private fun deleteBeosztott(id: Int) {
         val builder = AlertDialog.Builder(this)
@@ -45,7 +55,10 @@ class UsersListActivity : AppCompatActivity() {
         builder.setCancelable(true)
         builder.setPositiveButton("Igen") { dialog, _ ->
             sqliteHelper.deleteUser(id)
-
+            val intent = Intent(this, UsersListActivity::class.java)
+            intent.putExtra("szemelyid", ered)
+            intent.putExtra("nev", nev)
+            startActivity(intent)
             dialog.dismiss()
         }
         builder.setNegativeButton("Nem") { dialog, _ ->

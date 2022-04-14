@@ -409,9 +409,9 @@ class SqlHelper(context: Context) :
 
         val sortOrder = "$SZEMELY_ID ASC"
         val db = this.readableDatabase
-        val selection = "$SZEMELY_ID = ?"
+        val selection = "$SZEMELY_ID = ?  AND $ALLAPOT = ?"
         val ertesitesekList = ArrayList<Keresek>()
-        val selectionArgs = arrayOf(szemelyID.toString())
+        val selectionArgs = arrayOf(szemelyID.toString(),"elinditva")
         val cursor = db.query(
             TBL_KERESEK,
             columns,            //columns to return

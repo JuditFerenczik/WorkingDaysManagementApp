@@ -12,22 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeosztasApp"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activities.MunkarendActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.SzabiActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activities.ErtesitesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activities.ErtesitesRecyclerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activities.ErtesitesFActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activities.HomeAlkActivity"
             android:exported="false"
@@ -45,7 +47,8 @@
             android:theme="@style/Theme.BeosztasApp.NoActionBar" />
         <activity
             android:name=".activities.EditActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activites.RegisterActivity"
             android:exported="false"
@@ -58,7 +61,8 @@
             android:theme="@style/Theme.BeosztasApp.NoActionBar" />
         <activity
             android:name=".activities.UsersListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.BeosztasApp.NoActionBar"/>
         <activity
             android:name=".activites.SplashActivity"
             android:exported="true"

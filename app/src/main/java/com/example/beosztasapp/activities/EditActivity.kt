@@ -25,14 +25,24 @@ class EditActivity : AppCompatActivity() {
         btn_save.setOnClickListener {
             if (validateEditDetails()) {
                 val tmpSzemely = sqliteHelper.getSzemely(ered)
+                val isFonok = tmpSzemely.fonok == 0
                 tmpSzemely.jelszo = eet_confirm_password.text.toString()
                 sqliteHelper.updateUser(tmpSzemely)
                 Toast.makeText(this, "A jelszó megváltoztatva!", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@EditActivity, HomeActivity::class.java)
-                intent.putExtra("szemelyid", ered)
-                intent.putExtra("nev", nev)
-                intent.putExtra("isFonok", true)
-                startActivity(intent)
+                if(isFonok){
+                    val intent = Intent(this@EditActivity, HomeActivity::class.java)
+                    intent.putExtra("szemelyid", ered)
+                    intent.putExtra("nev", nev)
+                    intent.putExtra("isFonok", true)
+                    startActivity(intent)
+                }else{
+                    val intent = Intent(this@EditActivity, HomeAlkActivity::class.java)
+                    intent.putExtra("szemelyid", ered)
+                    intent.putExtra("nev", nev)
+                    intent.putExtra("isFonok", false)
+                    startActivity(intent)
+                }
+
             }
         }
     }

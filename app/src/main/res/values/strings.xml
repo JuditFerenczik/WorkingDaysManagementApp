@@ -126,5 +126,8 @@
     <string name="add_an_munkarend">Munkarend hozzáadása</string>
     <string name="hint_kezdes">Kezdés időpontja</string>
     <string name="et_hint_befejezes">Befejezés időpontja</string>
+    <string name="add_ertesitesek">Értesítések</string>
+    <string name="add_szabi">Elfogadott szabadságok</string>
+    <string name="alkalmazott">Alkalmazottak listája</string>
 
 </resources>

@@ -41,9 +41,21 @@ class RegisterActivity : AppCompatActivity() {
                 newSzemely.nev = et_name.text.toString()
                 newSzemely.adoazonosito = et_ado.text.toString().toInt()
                 newSzemely.fonok = ered
-                newSzemely.belepes = et_belepes.getDayOfMonth()
-                    .toString() + "." + (et_belepes.getMonth() + 1).toString() + "." + et_belepes.getYear()
-                    .toString()
+                var tmpmonth = ""
+                var tmpday =""
+               if (et_belepes.getDayOfMonth() < 10){
+                   tmpday ="0"+ et_belepes.getDayOfMonth().toString()
+               }else{
+                   tmpday = et_belepes.getDayOfMonth().toString()
+               }
+                if((et_belepes.getMonth() + 1) <10){
+                    tmpmonth = "0"+(et_belepes.getMonth() + 1).toString()
+                }else{
+                    tmpmonth =(et_belepes.getMonth() + 1).toString()
+                }
+
+                newSzemely.belepes = et_belepes.getYear()
+                    .toString() + "." + tmpmonth + "." +  tmpday
                 newSzemely.email = et_email.text.toString()
                 newSzemely.munkarend = et_munkr.text.toString().toInt()
                 newSzemely.eves_szabadsag = et_eves.text.toString().toInt()
