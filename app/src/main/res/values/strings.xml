@@ -129,5 +129,6 @@
     <string name="add_ertesitesek">Értesítések</string>
     <string name="add_szabi">Elfogadott szabadságok</string>
     <string name="alkalmazott">Alkalmazottak listája</string>
+    <string name="err_msg_enter_fullname">Legalább egy kereszt és utónév megadása!</string>
 
 </resources>

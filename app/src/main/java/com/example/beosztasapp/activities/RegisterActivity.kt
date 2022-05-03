@@ -78,6 +78,10 @@ class RegisterActivity : AppCompatActivity() {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_name), true)
                 false
             }
+            et_name.text?.indexOf(" ")  == -1-> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_fullname), true)
+                false
+            }
 
             TextUtils.isEmpty(et_email.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
